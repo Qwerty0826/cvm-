@@ -1,0 +1,69 @@
+CVM++ — Build & Run Instructions
+==================================
+
+REQUIREMENTS
+------------
+  C++17 compiler (GCC 9+ or Clang 10+ or MSVC 2019+)
+  CMake 3.16+
+
+BUILD
+-----
+  cmake -B build
+  cmake --build build
+
+  The compiled binary is:  build/cvm
+
+RUNNING A SOURCE FILE (.cvm)
+-----------------------------
+  ./build/cvm samples/fizzbuzz.cvm
+
+  With debug flags:
+  ./build/cvm --dump-ast       samples/fizzbuzz.cvm   # show AST
+  ./build/cvm --dump-bytecode  samples/fizzbuzz.cvm   # show bytecode
+  ./build/cvm --trace          samples/fizzbuzz.cvm   # trace every instruction
+  ./build/cvm --profile        samples/fizzbuzz.cvm   # execution profile
+
+COMPILE TO BYTECODE (.cvmb) AND RUN SEPARATELY
+-----------------------------------------------
+  Step 1 — compile:
+    ./build/cvm --compile-only samples/calculator.cvm
+    # produces: samples/calculator.cvmb
+
+  Step 2 — run bytecode:
+    ./build/cvm --run samples/calculator.cvmb
+
+  Or run a .cvmb directly by extension:
+    ./build/cvm samples/calculator.cvmb
+
+INTERACTIVE REPL
+----------------
+  ./build/cvm
+
+  REPL toggle commands:
+    :ast        — show AST for each input
+    :bytecode   — show bytecode for each input
+    :trace      — step-by-step VM execution
+    :optimize   — toggle constant folding
+    :clear      — reset global variables
+    :quit / :q  — exit
+
+SAMPLE PROGRAMS
+---------------
+  echo "15"  | ./build/cvm samples/fizzbuzz.cvm
+  echo "0"   | ./build/cvm samples/truth_machine.cvm
+  echo "1"   | ./build/cvm samples/truth_machine.cvm
+               ./build/cvm samples/functions_demo.cvm
+               ./build/cvm samples/strings_demo.cvm
+               ./build/cvm samples/calculator.cvm
+
+DEMO VIDEO SCRIPT (suggested)
+------------------------------
+  1. Build the project (cmake + make).
+  2. Run:  ./build/cvm --dump-bytecode samples/calculator.cvm
+     — shows compiled bytecode then executes interactively.
+  3. Run:  ./build/cvm --compile-only samples/calculator.cvm
+     — produces calculator.cvmb.
+  4. Run:  ./build/cvm --run samples/calculator.cvmb
+     — executes the pre-compiled bytecode.
+  5. Run:  ./build/cvm samples/truth_machine.cvm  (enter 0, then 1).
+  6. Open the REPL and show live evaluation.
