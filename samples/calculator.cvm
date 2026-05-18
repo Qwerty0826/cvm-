@@ -1,0 +1,51 @@
+// ── CVM++ Demo: Interactive Calculator ──────────────────────────────────────
+// Shows: input, to_num(), arithmetic, print, if/else chains, while loop.
+
+print "╔══════════════════════════╗";
+print "║   CVM++ Calculator       ║";
+print "╚══════════════════════════╝";
+print "";
+
+let running = true;
+while (running) {
+    let raw_a = input("Enter first number  (or 'q' to quit): ");
+    if (raw_a == "q") {
+        running = false;
+    } else {
+        let raw_b = input("Enter second number: ");
+        let op    = input("Operator (+  -  *  /  %): ");
+        let a     = to_num(raw_a);
+        let b     = to_num(raw_b);
+
+        if (a == nil or b == nil) {
+            print "Error: please enter valid numbers.";
+        } else {
+            let result = nil;
+
+            if (op == "+") { result = a + b; }
+            if (op == "-") { result = a - b; }
+            if (op == "*") { result = a * b; }
+            if (op == "/") {
+                if (b == 0) {
+                    print "Error: division by zero!";
+                } else {
+                    result = a / b;
+                }
+            }
+            if (op == "%") {
+                if (b == 0) {
+                    print "Error: modulo by zero!";
+                } else {
+                    result = a % b;
+                }
+            }
+
+            if (result != nil) {
+                print raw_a + " " + op + " " + raw_b + " = " + to_str(result);
+            }
+        }
+        print "";
+    }
+}
+
+print "Goodbye!";

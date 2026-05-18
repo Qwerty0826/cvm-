@@ -1,0 +1,13 @@
+// ── Truth Machine ─────────────────────────────────────────────────────────────
+// Classic challenge: read 0 or 1. If 0, print 0 and halt. If 1, print 1 forever.
+
+let val = input("Enter 0 or 1: ");
+let n   = to_num(val);
+
+if (n == 0) {
+    print 0;
+} else {
+    while (true) {
+        print 1;
+    }
+}

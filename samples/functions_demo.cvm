@@ -1,0 +1,64 @@
+// ── Functions Demo ────────────────────────────────────────────────────────────
+// Shows: function declarations, recursion, closures-via-globals, higher order calls.
+
+// ── Factorial ──────────────────────────────────────────────────────────────
+fn factorial(n) {
+    if (n <= 1) { return 1; }
+    return n * factorial(n - 1);
+}
+
+// ── Power ──────────────────────────────────────────────────────────────────
+fn power(base, exp) {
+    let result = 1;
+    for (let i = 0; i < exp; i = i + 1) {
+        result = result * base;
+    }
+    return result;
+}
+
+// ── GCD (Euclidean) ────────────────────────────────────────────────────────
+fn gcd(a, b) {
+    while (b != 0) {
+        let tmp = b;
+        b = a % b;
+        a = tmp;
+    }
+    return a;
+}
+
+// ── Is prime ──────────────────────────────────────────────────────────────
+fn is_prime(n) {
+    if (n < 2) { return false; }
+    let i = 2;
+    while (i * i <= n) {
+        if (n % i == 0) { return false; }
+        i = i + 1;
+    }
+    return true;
+}
+
+print "── Factorials ──";
+for (let i = 0; i <= 10; i = i + 1) {
+    print to_str(i) + "! = " + to_str(factorial(i));
+}
+
+print "";
+print "── Powers of 2 ──";
+for (let i = 0; i <= 10; i = i + 1) {
+    print "2^" + to_str(i) + " = " + to_str(power(2, i));
+}
+
+print "";
+print "── Primes up to 50 ──";
+let primes = "";
+for (let i = 2; i <= 50; i = i + 1) {
+    if (is_prime(i)) {
+        primes = primes + to_str(i) + " ";
+    }
+}
+print primes;
+
+print "";
+print "── GCD demo ──";
+print "gcd(48, 18) = " + to_str(gcd(48, 18));
+print "gcd(100, 75) = " + to_str(gcd(100, 75));

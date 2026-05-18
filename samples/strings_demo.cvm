@@ -1,0 +1,18 @@
+// ── String Demo ───────────────────────────────────────────────────────────────
+// Shows: string type, concatenation, len(), to_str(), to_num(), type_of().
+
+let name = input("What is your name? ");
+let age  = to_num(input("How old are you? "));
+
+print "Hello, " + name + "!";
+print "You are " + to_str(age) + " years old.";
+print "Name has " + to_str(len(name)) + " characters.";
+print "type_of(name) = " + type_of(name);
+print "type_of(age)  = " + type_of(age);
+
+// String built from loop
+let row = "";
+for (let i = 0; i < age; i = i + 1) {
+    row = row + "*";
+}
+print "Age bar: " + row;
