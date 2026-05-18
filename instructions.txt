@@ -56,14 +56,26 @@ SAMPLE PROGRAMS
                ./build/cvm samples/strings_demo.cvm
                ./build/cvm samples/calculator.cvm
 
-DEMO VIDEO SCRIPT (suggested)
-------------------------------
-  1. Build the project (cmake + make).
-  2. Run:  ./build/cvm --dump-bytecode samples/calculator.cvm
-     — shows compiled bytecode then executes interactively.
-  3. Run:  ./build/cvm --compile-only samples/calculator.cvm
-     — produces calculator.cvmb.
-  4. Run:  ./build/cvm --run samples/calculator.cvmb
-     — executes the pre-compiled bytecode.
-  5. Run:  ./build/cvm samples/truth_machine.cvm  (enter 0, then 1).
-  6. Open the REPL and show live evaluation.
+DEMO VIDEO SCRIPT
+-----------------
+  Scene 1 — Show the source code:
+    cat samples/truth_machine.cvm
+
+  Scene 2 — Show the parsed AST (no input needed):
+    ./build/cvm --dump-ast samples/functions_demo.cvm
+
+  Scene 3 — Show the compiled bytecode (no input needed):
+    ./build/cvm --dump-bytecode samples/functions_demo.cvm
+
+  Scene 4 — Compile to a .cvmb binary file:
+    ./build/cvm --compile-only samples/truth_machine.cvm
+    ls -lh samples/truth_machine.cvmb
+
+  Scene 5 — Run the .cvmb file directly (no source code needed):
+    ./build/cvm --run samples/truth_machine.cvmb
+    (enter 0 — prints 0 and exits)
+    ./build/cvm --run samples/truth_machine.cvmb
+    (enter 1 — prints 1 forever, press Ctrl+C to stop)
+
+  Scene 6 — Show the execution profiler:
+    echo "20" | ./build/cvm --profile samples/fizzbuzz.cvm
