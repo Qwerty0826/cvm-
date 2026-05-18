@@ -3,3 +3,5 @@ build/
 *.o
 *.a
 .DS_Store
+"Crafting Interpreters (Robert Nystrom).pdf"
+Crafting*Interpreters*.pdf
