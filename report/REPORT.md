@@ -391,7 +391,7 @@ The `ADD` opcode is the one exception: if either operand is a string, CVM perfor
 
 ### 9.5 Native Standard Library
 
-Ten built-in functions are implemented as C++ lambdas and registered in a `natives_` hash map at VM startup:
+Eleven built-in functions are implemented as C++ lambdas and registered in a `natives_` hash map at VM startup:
 
 | Function | Behaviour |
 |---|---|
@@ -540,7 +540,7 @@ The pipeline was validated with 65 targeted test cases covering:
 - User-defined functions — basic calls, recursion, local scope isolation, global variable visibility
 - Multiple return paths within a function
 - Nil values and nil equality
-- All 10 native stdlib functions
+- All 11 native stdlib functions
 - Bytecode serialization round-trip (compile to `.cvmb`, load, execute, verify output)
 - Constant-folding optimizer
 
@@ -562,7 +562,7 @@ The problem statement specifies integers, booleans, `+`, `-`, `*`, `/`, `==`, `<
 | **`.cvmb` binary bytecode format** | Separate compilation and execution; versioned binary format |
 | **Disassembler** | Makes the compiler's output inspectable |
 | **Execution profiler** | Per-opcode hit count instrumentation |
-| **Native standard library** | 10 functions dispatched without new opcodes |
+| **Native standard library** | 11 functions dispatched without new opcodes |
 | **Interactive REPL** | Persistent VM state across session lines |
 
 ---
