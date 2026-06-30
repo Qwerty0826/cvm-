@@ -79,7 +79,7 @@ void Compiler::emit_loop(int loop_start, int line) {
     current_chunk().write(static_cast<uint8_t>(offset & 0xFF), line);
 }
 
-int Compiler::add_string_constant(const std::string& s, int line) {
+int Compiler::add_string_constant(const std::string& s) {
     return current_chunk().add_constant(Value::from_string(s));
 }
 
@@ -132,7 +132,7 @@ void Compiler::visit(IdentifierExpr& e) {
     if (local >= 0) {
         emit(OpCode::GET_LOCAL, static_cast<uint8_t>(local), e.line);
     } else {
-        int idx = add_string_constant(e.name, e.line);
+        int idx = add_string_constant(e.name);
         emit(OpCode::GET_GLOBAL, e.line);
         current_chunk().write(static_cast<uint8_t>((idx >> 8) & 0xFF), e.line);
         current_chunk().write(static_cast<uint8_t>(idx & 0xFF), e.line);
@@ -193,7 +193,7 @@ void Compiler::visit(AssignExpr& e) {
     if (local >= 0) {
         emit(OpCode::SET_LOCAL, static_cast<uint8_t>(local), e.line);
     } else {
-        int idx = add_string_constant(e.name, e.line);
+        int idx = add_string_constant(e.name);
         emit(OpCode::SET_GLOBAL, e.line);
         current_chunk().write(static_cast<uint8_t>((idx >> 8) & 0xFF), e.line);
         current_chunk().write(static_cast<uint8_t>(idx & 0xFF), e.line);
@@ -207,7 +207,7 @@ void Compiler::visit(CallExpr& e) {
 }
 
 void Compiler::visit(InputExpr& e) {
-    int idx = add_string_constant(e.prompt, e.line);
+    int idx = add_string_constant(e.prompt);
     emit(OpCode::INPUT, e.line);
     current_chunk().write(static_cast<uint8_t>((idx >> 8) & 0xFF), e.line);
     current_chunk().write(static_cast<uint8_t>(idx & 0xFF), e.line);
@@ -237,7 +237,7 @@ void Compiler::visit(LetStmt& s) {
         declare_local(s.name, s.line);
     } else {
         // Global variable
-        int idx = add_string_constant(s.name, s.line);
+        int idx = add_string_constant(s.name);
         emit(OpCode::DEFINE_GLOBAL, s.line);
         current_chunk().write(static_cast<uint8_t>((idx >> 8) & 0xFF), s.line);
         current_chunk().write(static_cast<uint8_t>(idx & 0xFF), s.line);
@@ -348,7 +348,7 @@ void Compiler::visit(FnStmt& s) {
     } else {
         // Global function
         current_chunk().write_constant(Value::from_function(compiled_fn), s.line);
-        int idx = add_string_constant(s.name, s.line);
+        int idx = add_string_constant(s.name);
         emit(OpCode::DEFINE_GLOBAL, s.line);
         current_chunk().write(static_cast<uint8_t>((idx >> 8) & 0xFF), s.line);
         current_chunk().write(static_cast<uint8_t>(idx & 0xFF), s.line);

@@ -64,7 +64,7 @@ private:
     int  emit_jump(OpCode op, int line);
     void patch_jump(int offset);
     void emit_loop(int loop_start, int line);
-    int  add_string_constant(const std::string& s, int line);
+    int  add_string_constant(const std::string& s);
 
     // ── Visitor implementations ───────────────────────────────────────
     void visit(LiteralExpr&)    override;
