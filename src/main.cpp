@@ -211,8 +211,8 @@ int main(int argc, char* argv[]) {
         return run_bytecode_file(run_file, dump_bytecode, trace, profile_mode);
     }
 
-    // Source file given
-    if (!input_file.empty()) {
+    // Source file given (unless --repl forces the interactive prompt)
+    if (!input_file.empty() && !start_repl) {
         // Auto-detect .cvmb
         if (input_file.size() >= 5 &&
             input_file.substr(input_file.size() - 5) == ".cvmb") {

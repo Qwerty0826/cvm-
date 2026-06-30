@@ -4,7 +4,7 @@
 
 It includes a hand-written lexer, a recursive-descent parser, a typed Abstract Syntax Tree, a constant-folding optimizer, a single-pass bytecode compiler, a stack-based virtual machine with a 33-opcode ISA, a binary bytecode serializer, a disassembler, an execution profiler, and an interactive REPL — all implemented across ~3,300 lines of C++.
 
-The language, called CVM, supports integers, booleans, strings, user-defined recursive functions, lexically-scoped variables, `if/else`, `while`, `for`, and a built-in standard library of 10 native functions. Source files (`.cvm`) are compiled into a proprietary binary bytecode format (`.cvmb`) that can be distributed and executed independently of the source, in the same way Java `.class` files or Python `.pyc` files work.
+The language, called CVM, supports integers, booleans, strings, user-defined recursive functions, lexically-scoped variables, `if/else`, `while`, `for`, and a built-in standard library of 11 native functions. Source files (`.cvm`) are compiled into a proprietary binary bytecode format (`.cvmb`) that can be distributed and executed independently of the source, in the same way Java `.class` files or Python `.pyc` files work.
 
 The goal of the project is to demystify every layer of a language runtime — from the moment raw text is read off disk to the moment a result is printed — by building each layer by hand and making every intermediate representation inspectable at the command line.
 
